@@ -1,0 +1,241 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+  }
+  
+  .close-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    
+  }
+
+  .report-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #7FC008;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .report-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left !important;
+    margin-right: 100px !important;
+  }
+  
+  .report-text {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: left !important;
+    margin-right: 100px !important;
+  }
+
+  .overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modalContainer{
+    max-width: 600px;
+    width: 100%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  }
+  body.active-modal {
+    overflow-y: hidden;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+.modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+.image-container {
+    display: flex;
+    justify-content: center; /* horizontally center the images */
+    align-items: center; /* vertically center the images */
+  }
+  
+  .image-container img {
+    margin: 0 50px; /* add some margin between the images */
+    max-width: 100%; /* set the images to be responsive */
+  }
+
+  .same-line {
+    letter-spacing: 2px;
+  }
+
+  .container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .element {
+    margin: 0 40px; /* adjust the value to control the space */
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-img {
+    width: 30px;
+    height: 30px;
+    margin: 20px;
+   
+  }
+
+  .container {
+    display: flex;
+    margin-right: 220px;
+  }
+  
+  .washer-text {
+    margin-right: 10px;
+    color: #0E4DA4;
+  }
+  
+  .toggle-container {
+    position: relative;
+  }
+  
+  .toggle {
+    display: none;
+  }
+  
+  .label {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #ddd;
+    cursor: pointer;
+  }
+  
+  .ball {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .toggle:checked + .label {
+    background-color: #7fc008;
+  }
+  
+  .toggle:checked + .label .ball {
+    transform: translateX(20px);
+  }
