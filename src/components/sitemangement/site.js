@@ -10,8 +10,15 @@ import laundryImg from './laundryicon.png';
 import qrCode from './qr-code.png';
 import pencilImg from './pencil.png';
 import redbin from './redbin.png';
-import { TextField, Box,Checkbox, FormControlLabel } from "@material-ui/core";
+import { TextField, Box,Checkbox, FormControlLabel,Grid, } from "@material-ui/core";
 import Addimage from './addImage.png';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import CalendarIcon from "./calendaricon.png";
+import MapExample from "./mapExample.png";
+import './SearchField.css';
+import ExampleQr from "./Qrcode.png";
+
 
 const stylesTextfield = {
   container: {
@@ -33,12 +40,16 @@ const stylesTextfield = {
   },
 };
 
+
+
 ;
 
 
 function SiteManageMent(){
+ 
     const [modal, setModal] = useState(false);
     const [modal1, setModal1] = useState(false);
+    const [modal2, setModal2] = useState(false);
 
     const [checked, setChecked] = useState(false);
 
@@ -66,6 +77,16 @@ function SiteManageMent(){
         document.body.classList.remove('active-modal')
       }
 
+      const toggleModal2 = () => {
+        setModal2(!modal2);
+      };
+    
+      if(modal2) {
+        document.body.classList.add('active-modal')
+      } else {
+        document.body.classList.remove('active-modal')
+      }
+
     const [isToggled, setIsToggled] = useState(false);
     const [isToggled1, setIsToggled1] = useState(false);
   
@@ -80,6 +101,14 @@ function SiteManageMent(){
     }
 
     const [isFocused, setIsFocused] = useState(false);
+
+    const [startDate, setStartDate] = useState(new Date());
+    const CustomInput = ({ value, onClick }) => (
+      <div className="date-picker-container">
+        <img src={CalendarIcon} onClick={onClick} />
+        <input type="text" value={value}  />
+      </div>
+    );
 
   const inputStyle = {
     width:"500px",
@@ -325,20 +354,29 @@ function SiteManageMent(){
             <p style={{ color: "#0E4DA4" ,textAlign:'left' }}>
                 Acion
             </p>
-            <div className="button-container">
+            <div className="button-container" >
                 <div className="button-row">
-                    
-                        <img src={qrCode} className="button-img" />
+                    <button style={{border:"none"} }onClick={toggleModal2}>
+                    <img src={qrCode} className="button-img" />
                     <div style={{ color: "#0E4DA4" ,marginRight:"50px"}}>
                         QR Code Generator
                     </div>
-                   
-                    <img src={pencilImg} className="button-img" />
-                    <div style={{ color: "#0E4DA4" ,marginLeft:'30px'}}>Edit Site</div>
+                    </button>
+                        
+                   <button onClick={toggleModal1} style={{border:"none" ,width:"200px"}}>
+                   <img src={pencilImg} className="button-img" />
+                    <div style={{ color: "#0E4DA4" ,}}>Edit Site</div>
+                   </button>
+                    
                 </div>
                 <div className="button-row">
-                    <img src={docImg} className="button-img" />
-                    <div style={{ color: "#0E4DA4" ,marginRight:"100px"}}>Up LoadSlip</div>
+               
+                  <img src={docImg} className="button-img" />
+                    <div style={{ color: "#0E4DA4" ,marginRight:"100px"}}>
+                      Up LoadSlip
+                    </div>
+                  
+                  
                     <img src={redbin} className="button-img" />
                     <div style={{ color: "#E81C00" }}>Delete Site</div>
                 </div>
@@ -374,7 +412,7 @@ function SiteManageMent(){
                         <span style={{color:'#0E4DA4'}}>Size L</span> 
                      </label>
                 </div>
-                <button style={{backgroundColor: "#0E4DA4", marginLeft: "320px",border: 'none',color: 'white',borderRadius: '50px',width:"100px",height:"30px",}} onClick={toggleModal1} >
+                <button style={{backgroundColor: "#0E4DA4", marginLeft: "320px",border: 'none',color: 'white',borderRadius: '50px',width:"100px",height:"30px",}}  >
                     Submit
                 </button>
 
@@ -395,7 +433,7 @@ function SiteManageMent(){
                                 type="checkbox"
                                 className="toggle"
                                 checked={isToggled}
-                                onChange={handleToggle}
+                                onChange={handleToggle1}
                             />
                             <label htmlFor="toggle" className="label">
                          <div div className="ball"></div>
@@ -413,7 +451,7 @@ function SiteManageMent(){
                   </div>
                   
             </p>
-            <span>
+            <span >
               <Box
       display="flex"
       flexDirection="column"
@@ -663,11 +701,13 @@ function SiteManageMent(){
       style={containerStyle4}
     >
       <Box mb={1} style={topicStyle}>
-        การเก็บค่าเช่า
+        ค่าน้ำ
       </Box>
-      <Box display="flex" flexDirection="row" alignItems="start">
-        
-        <FormControlLabel
+
+      <Grid container alignItems="center">
+        <Grid item>
+          <Grid container direction="column">
+          <FormControlLabel
       control={
         <Checkbox
           checked={checked}
@@ -680,7 +720,7 @@ function SiteManageMent(){
           {`${checked ? "THB" : "THB"}`}
         </span>
       }
-      style={{ display:"block"}}
+      style={{ display:"block",marginRight:"45px"}}
     />
     <Box mr={2} ml={2} borderLeft={1} borderColor="#bdbdbd" height={24}></Box>
     <FormControlLabel
@@ -698,9 +738,10 @@ function SiteManageMent(){
       }
       style={{ display:"block"}}
     />
-       
-      <Box mr={10}>
-      <Box
+          </Grid>
+        </Grid>
+        <Grid item>
+        <Box
     display="flex"
     flexDirection="column"
     alignItems="flex-start"
@@ -718,18 +759,192 @@ function SiteManageMent(){
       onFocus={handleFocus}
       onBlur={handleBlur}
     />
-  </Box>
-  </Box>
-    
-    
+  </Box>   
+  </Grid>
+      </Grid>
+      
+       
+    </Box>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      style={containerStyle4}
+    >
+      <Box mb={1} style={topicStyle}>
+        ค่าไฟ
       </Box>
+
+      <Grid container alignItems="center">
+        <Grid item>
+          <Grid container direction="column">
+          <FormControlLabel
+      control={
+        <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "primary checkbox" }}
+        />
+      }
+      label={
+        <span style={{ color: checked ? "#263238" : "#263238" }}>
+          {`${checked ? "THB" : "THB"}`}
+        </span>
+      }
+      style={{ display:"block",marginRight:"45px"}}
+    />
+    <Box mr={2} ml={2} borderLeft={1} borderColor="#bdbdbd" height={24}></Box>
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "primary checkbox" }}
+        />
+      }
+      label={
+        <span style={{ color: checked ? "#263238" : "#263238" }}>
+          {`${checked ? "Per Unit" : "Per Unit"}`}
+        </span>
+      }
+      style={{ display:"block"}}
+    />
+          </Grid>
+        </Grid>
+        <Grid item>
+        <Box
+    display="flex"
+    flexDirection="column"
+    alignItems="flex-start"
+    justifyContent="flex-start"
+    style={containerStyle5}
+  >
+    <Box mb={1} style={topicStyle}>
+      จำนวน
+    </Box>
+    <TextField
+         InputProps={{
+          style: inputStyle4,         
+          underline: 'none'
+        }}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    />
+  </Box>   
+  </Grid>
+      </Grid>
+      
        
     </Box>
     
     </div>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      style={containerStyle}
+    >
+      <Box mb={1} style={topicStyle}>
+        ระยะสัญญา
+      </Box>
+     <div className="my-datepicker-wrapper">
+     <DatePicker
+      selected={startDate}
+      onChange={date => setStartDate(date)}
+      dateFormat="dd/MM/yyyy"
+      minDate={new Date()}
+      maxDate={new Date().setFullYear(new Date().getFullYear() + 1)}
+      customInput={<CustomInput />}
+      popperClassName="date-picker-popper"
+    />
+     </div>
+    </Box>
+    <h4 style={{color:"#093B9E",fontWeight:"bold",marginRight:"480px"}}>
+      แผนที่
+    </h4>
+    <img src={MapExample} alt= 'MapExample'/>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      style={containerStyle}
+    >
+      <TextField
+           InputProps={{
+            style: inputStyle,         
+            underline: 'none'
+          }}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+    </Box>
+    <button className="add-button">+Add</button>
             </span>
             
                
+          </div> 
+        </div>
+      )}
+
+{modal2 && (
+        <div className="modal">
+          <div onClick={toggleModal2} className="overlay"></div>
+          <div className="modal-content">
+            <h1 style={{ color: "#22285E" }}>Qr Code Generator</h1>
+            <div style={{display:"flex",margin:"20px"}}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      style={containerStyle3}
+    >
+      <Box mb={1} style={topicStyle}>
+        การเก็บค่าเช่า
+      </Box>
+      <TextField
+            InputProps={{
+              style: inputStyle3,         
+              underline: 'none'
+              }}
+            onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+       
+    </Box>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      style={containerStyle3}
+    >
+      <Box mb={1} style={topicStyle}>
+        จำนวน
+          </Box>
+        <TextField
+            InputProps={{
+              style: inputStyle3,         
+              underline: 'none'
+              }}
+            onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+        </Box>
+      </div>
+      <div>
+      <img src={ExampleQr} alt= 'ExampleQr' />
+      </div>
+      <div>
+      <button style={{backgroundColor: "#0E4DA4",border: 'none',color: 'white',borderRadius: '50px',width:"100px",height:"30px",top:"80px"}}  >
+                    Submit
+                </button>
+      </div>
+                
+
           </div> 
         </div>
       )}
